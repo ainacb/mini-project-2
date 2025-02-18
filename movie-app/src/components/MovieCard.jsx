@@ -20,6 +20,9 @@ const MovieCard = ({ movie }) => {
           ⭐ {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"} | 📅{" "}
           {movie.release_date || "Unknown"}
         </p>
+        <p className="movie-description">
+          {movie.overview ? movie.overview : "No description available."}
+        </p>
       </div>
     </div>
   );
