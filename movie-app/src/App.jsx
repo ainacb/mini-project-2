@@ -13,17 +13,17 @@ function App() {
     ageRating: "",
     sortBy: "",
   }); // Stores Active filters
-
   const [tempFilters, setTempFilters] = useState(filters); // Temporary filters until submit
   const [currentPage, setCurrentPage] = useState(1); // Tracks current page for pagination
 
   const { movies, loading, error } = useMovies(searchQuery, filters); // Fetch movies based on searchQuery and filters
+  // Returns: movies – The list of movies fetched. loading – A boolean indicating if data is still loading. error – An error message if fetching fails.
 
   // Pagination Logic - Show only 12 movies per page
   const moviesPerPage = 12;
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
-  const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
+  const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie); // Slices the movies array to display only the movies for the active page
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -36,11 +36,11 @@ function App() {
     <div className="container">
       <h1 className="title">Movie Finder</h1>
       <SearchBar // Renders searchBar component, props passed to searchBar
-        search={searchInput}
-        setSearch={setSearchInput}
-        handleSearch={handleSearch}
-        tempFilters={tempFilters}
-        setTempFilters={setTempFilters}
+        search={searchInput} // Current search input
+        setSearch={setSearchInput} // Function to update search input.
+        handleSearch={handleSearch} // Function to submit search.
+        tempFilters={tempFilters} // Temporary filters.
+        setTempFilters={setTempFilters} // Function to update temporary filters.
       />
       {loading && <p className="loading">Loading movies...</p>}
       {/* If loading is true, it displays "Loading movies...". */}
@@ -48,20 +48,20 @@ function App() {
       {/* If error exists, it displays the error message. */}
 
       <div className="movie-grid">
-        {currentMovies.length > 0 ? (
+        {currentMovies.length > 0 ? ( // Checks if there are movies to display
           currentMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
-          ))
+          )) // Maps over currentMovies and renders a MovieCard for each
         ) : (
-          <p className="no-movies">No movies found.</p>
+          <p className="no-movies">No movies found.</p> // If no movies are found, it displays "No movies found."
         )}
       </div>
       {/* Pagination Component */}
       <Pagination
-        currentPage={currentPage}
-        totalMovies={movies.length}
-        moviesPerPage={moviesPerPage}
-        onPageChange={setCurrentPage}
+        currentPage={currentPage} // Active page number.
+        totalMovies={movies.length} // Total number of fetched movies.
+        moviesPerPage={moviesPerPage} // Number of movies per page.
+        onPageChange={setCurrentPage} // Function to update the page.
       />
     </div>
   );
