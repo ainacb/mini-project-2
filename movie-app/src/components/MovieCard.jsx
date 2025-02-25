@@ -1,7 +1,6 @@
 const MovieCard = ({ movie }) => {
   // Placeholder Image
-  const placeHolderImage =
-    "https://placehold.co/380x570?text=No+Poster+Available";
+  const placeHolderImage = `https://placehold.co/380x570?text=${movie.original_title}`;
 
   return (
     <div className="movie-card">
@@ -11,7 +10,7 @@ const MovieCard = ({ movie }) => {
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
             : placeHolderImage
         }
-        alt={movie.title}
+        alt={movie.original_title}
         className="movie-poster"
       />
       <div className="movie-details">
