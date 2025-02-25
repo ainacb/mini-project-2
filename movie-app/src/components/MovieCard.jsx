@@ -10,7 +10,7 @@ const MovieCard = ({ movie }) => {
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
             : placeHolderImage
         }
-        alt={movie.original_title}
+        alt={movie.title}
         className="movie-poster"
       />
       <div className="movie-details">
