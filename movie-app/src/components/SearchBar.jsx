@@ -1,14 +1,15 @@
 import { FaSearch } from "react-icons/fa";
 
 const SearchBar = ({
-  search,
-  setSearch,
-  handleSearch,
-  tempFilters,
-  setTempFilters,
+  search, // current search input value
+  setSearch, // function to update the search input value
+  handleSearch, // function to execute the search when the form is submitted
+  tempFilters, // temporary state object storing filter selections before applying them
+  setTempFilters, // function to update the temporary filters
 }) => {
   return (
     <form onSubmit={handleSearch} className="search-form">
+      {/* onSubmit={handleSearch} ensures that when the form is submitted, it triggers the handleSearch function. */}
       {/* Search Input */}
       <input
         type="text"
